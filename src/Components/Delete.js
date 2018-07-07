@@ -10,12 +10,12 @@ class Delete extends Component {
         }
     }
 
-    
+
 
     render(){
         return(
             <div>
-                <button>Delete Meme</button>
+                <button onClick={() => this.props.onClick()}>Delete Meme</button>
             </div>
         )
     }

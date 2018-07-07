@@ -1,20 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-class Meme extends Component{
-    constructor(){
-        super()
 
-        this.state ={
-
-        }
-    }
-
-    render(){
-        return(
-            <div>Meme Component</div>
-        )
-    }
+function Meme(){
+    return(
+        <h3>You Saved:</h3>
+    )
 }
 
 export default Meme;

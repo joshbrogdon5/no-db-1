@@ -17,6 +17,12 @@ app.put('/api/savedMemes', (req,res) => {
     console.log(saved)
 })
 
+app.delete('/api/savedMemes/:id', (req,res) => {
+    saved.splice(req.params.id, 1);//could I somehow use current meme to delete??
+    res.status(200).send(saved);
+    console.log(saved)
+})
+
 
 //END-POINTS
 const PORT = 3033;

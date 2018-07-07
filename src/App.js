@@ -6,6 +6,7 @@ import Save from './Components/Save';
 import Delete from './Components/Delete';
 import Title from './Components/Title';
 import Meme from './Components/Meme'
+import Saved from './Components/Saved'
 
 
 
@@ -39,6 +40,9 @@ generateMeme(){
   })
 }
 
+displayTitle(){
+  return this.state.savedMemes.data //this is optional but ask about it to be able to display actual title of meme
+}
 
 saveMeme(){
 
@@ -51,12 +55,25 @@ saveMeme(){
   })
 }
 
+deleteMeme(){
+  axios.delete('/api/savedMemes/:id', {savedMeme: this.state.meme.id}).then(results => {
+    this.setState({
+      savedMemes: results.data
+    })
+  })
+}
+
   render() {
     let displaySavedMemes = this.state.savedMemes.map((e,i) => {
     return(
-      <div> 
+      <div>  
+       <Meme 
+       title={() => this.displayTitle()}//this is optional but ask about it to be able to display actual title of meme
+       />
        <img key={i} src={e.url}/> 
-       <Delete />
+       <Delete
+       onClick={() => this.deleteMeme()}
+       />
       </div>
        )
     })
@@ -68,7 +85,7 @@ saveMeme(){
         <Save 
         onClick={() => this.saveMeme()}
         />
-        <h2>Saved Memes:</h2>
+        <Saved />
           {displaySavedMemes}
       </div>
     );
