@@ -1,0 +1,9 @@
+.saved-container {
+display: flex;
+}
+.saved {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    padding: 20px;
+    text-decoration: underline black;
+}

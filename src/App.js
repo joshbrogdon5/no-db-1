@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './reset.css'
 import axios from 'axios';
 import Save from './Components/Save';
 import Delete from './Components/Delete';
@@ -25,13 +26,13 @@ class App extends Component {
     this.generateMeme=this.generateMeme.bind(this);
   }
 
-  componentDidMount(){
-    axios.get(baseUrl).then((result) => {
-      this.setState({
-        memesToDisplay: result.data.data.memes
-      })
-    })
-  }
+  // componentDidMount(){
+  //   axios.get(baseUrl).then((result) => {
+  //     this.setState({
+  //       memesToDisplay: result.data.data.memes
+  //     })
+  //   })
+  // }
 
 generateMeme(){
   this.setState({
@@ -80,13 +81,19 @@ deleteMeme(){
     return (
       <div className="App">
         <Title />
-        <img src={this.state.meme.url}/>
-        <button onClick={() => this.generateMeme()}>Generate Meme</button>
+        <div className="meme-container">
+          <img className="generated-meme" src={this.state.meme.url}/>
+        </div>
+        <div className="generate-container">
+          <button className="generate" onClick={() => this.generateMeme()}>Generate Meme</button>
+        </div>
         <Save 
         onClick={() => this.saveMeme()}
         />
         <Saved />
+        <div className="display-saved-container">
           {displaySavedMemes}
+        </div>
       </div>
     );
   }

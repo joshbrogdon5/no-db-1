@@ -1,0 +1,16 @@
+.delete-container {
+    display: flex;
+}
+.delete {
+    background: black;
+    font-family: 'Courier New', Courier, monospace;
+    color: whitesmoke;
+    font-size: 20px;
+    margin: auto;
+    border-radius: 5px;
+    border-color: whitesmoke;
+}
+.delete:hover {
+    background: whitesmoke;
+    color: black;
+}

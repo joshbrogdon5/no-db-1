@@ -1,10 +1,12 @@
 import React from 'react';
-
+import './Meme.css'
 
 
 function Meme(){
     return(
-        <h3>You Saved:</h3>
+        <div className="container">
+            <h3 className="you-saved">You Saved:</h3>
+        </div>
     )
 }
 

@@ -1,0 +1,16 @@
+.save-container {
+  display: flex;
+}
+.save {
+    background: black;
+    font-family: 'Courier New', Courier, monospace;
+    color: whitesmoke;
+    font-size: 20px;
+    margin: auto;
+    border-radius: 5px;
+    border-color: whitesmoke;
+}
+.save:hover {
+    background: whitesmoke;
+    color: black;
+}

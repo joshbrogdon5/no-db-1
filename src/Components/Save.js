@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Save.css'
 
 
 class Save extends Component {
@@ -13,8 +14,8 @@ class Save extends Component {
 
     render(){
         return(
-            <div>
-                <button onClick={() => this.props.onClick()}>Save Meme</button>
+            <div className="save-container">
+                <button className="save" onClick={() => this.props.onClick()}>Save Meme</button>
             </div>
         )
     }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Delete.css'
 
 
 class Delete extends Component {
@@ -14,8 +15,8 @@ class Delete extends Component {
 
     render(){
         return(
-            <div>
-                <button onClick={() => this.props.onClick()}>Delete Meme</button>
+            <div className="delete-container">
+                <button className="delete" onClick={() => this.props.onClick()}>Delete Meme</button>
             </div>
         )
     }

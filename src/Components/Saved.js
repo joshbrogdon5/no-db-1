@@ -1,10 +1,12 @@
 import React from 'react';
-
+import './Saved.css'
 
 
 function Saved(){
     return(
-        <h2>Saved Memes:</h2>
+        <div className="saved-container">
+            <h2 className="saved">Saved Memes:</h2>
+        </div>
     )
 }
 
