@@ -11,7 +11,6 @@ import Saved from './Components/Saved'
 
 
 
-const baseUrl = 'https://api.imgflip.com/get_memes';
 
 class App extends Component {
   constructor(){
@@ -21,18 +20,20 @@ class App extends Component {
       memesToDisplay: [],
       savedMemes: [],
       meme: {name: "", url: ""},
-      currentMeme: 0
+      currentMeme: 0,
+      displayFirstMeme: {}
     }
     this.generateMeme=this.generateMeme.bind(this);
+    this.displayFirstMeme=this.displayFirstMeme.bind(this)
   }
 
-  // componentDidMount(){
-  //   axios.get(baseUrl).then((result) => {
-  //     this.setState({
-  //       memesToDisplay: result.data.data.memes
-  //     })
-  //   })
-  // }
+  componentDidMount(){
+    axios.get('/api/allMemes').then((result) => {
+      this.setState({
+        memesToDisplay: result.data.memes
+      })
+    })
+  } 
 
 generateMeme(){
   this.setState({
@@ -41,20 +42,16 @@ generateMeme(){
   })
 }
 
-displayTitle(){
-  return this.state.savedMemes.data //this is optional but ask about it to be able to display actual title of meme
-}
-
-saveMeme(){
-
-  axios.put('/api/savedMemes', {savedMeme: this.state.meme}).then(results => {
-      console.log(results);
-      this.setState({
-          savedMemes: results.data
-      })
-      
+displayFirstMeme(){
+  axios.get('/api/firstMeme').then( result => {
+    console.log(result)
+    return result
+    // this.setState({
+    //   displayFirstMeme: result
+    // })
   })
 }
+
 
 deleteMeme(){
   axios.delete('/api/savedMemes/:id', {savedMeme: this.state.meme.id}).then(results => {
@@ -65,11 +62,11 @@ deleteMeme(){
 }
 
   render() {
-    let displaySavedMemes = this.state.savedMemes.map((e,i) => {
+    let displaySavedMemes = this.state.savedMemes.map((e,i) => {//it is currently being saved in the savedMemes array in save.js
     return(
       <div>  
        <Meme 
-       title={() => this.displayTitle()}//this is optional but ask about it to be able to display actual title of meme
+       title={() => this.displayTitle()}
        />
        <img key={i} src={e.url}/> 
        <Delete
@@ -82,13 +79,13 @@ deleteMeme(){
       <div className="App">
         <Title />
         <div className="meme-container">
+          {this.displayFirstMeme()}
           <img className="generated-meme" src={this.state.meme.url}/>
         </div>
         <div className="generate-container">
           <button className="generate" onClick={() => this.generateMeme()}>Generate Meme</button>
         </div>
         <Save 
-        onClick={() => this.saveMeme()}
         />
         <Saved />
         <div className="display-saved-container">
